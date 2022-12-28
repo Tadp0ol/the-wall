@@ -1,11 +1,11 @@
 let constants = {};
 
-constants.PORT = 8080;
+constants.PORT = 3000;
 
 constants.DATABSE = {
-    host     : "localhost",
-    user     : "root",
-    password : "",
+    host     : "192.168.0.119",
+    user     : "tadzki",
+    password : "b31j10jer915",
     database : "the_wall"
 };
 

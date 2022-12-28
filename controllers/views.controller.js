@@ -1,4 +1,3 @@
-const MessagesModel = require("../models/messages.model");
 
 class ViewController{
     #req;
@@ -10,23 +9,7 @@ class ViewController{
     }
 
     loginRegister = async () => {
-        if(!this.#req.session?.user_data){
-            this.#res.render("login_register.ejs");
-        }
-        else{
-            this.#res.redirect("/dashboard");
-        }
-    }
-
-    dashboard = async () => {
-        if(this.#req.session?.user_data){
-            let messages = await MessagesModel.fetchMessages();
-
-            this.#res.render("dashboard.ejs", {user: this.#req.session.user_data, messages: messages.result})
-        }
-        else{
-            this.#res.redirect("/");
-        }
+        this.#res.render("login_register.ejs");
     }
     
     logout  = async(req, res) => {
