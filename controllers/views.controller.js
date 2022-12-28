@@ -9,7 +9,23 @@ class ViewController{
     }
 
     loginRegister = async () => {
-        this.#res.render("login_register.ejs");
+        if(!this.#req.session?.user_data){
+            this.#res.render("login_register.ejs");
+        }
+        else{
+            this.#res.redirect("/dashboard");
+        }
+    }
+
+    dashboard = async () => {
+        if(this.#req.session?.user_data){
+            let messages = await MessagesModel.fetchMessages();
+
+            this.#res.render("dashboard.ejs", {user: this.#req.session.user_data, messages: messages.result})
+        }
+        else{
+            this.#res.redirect("/");
+        }
     }
     
     logout  = async(req, res) => {
